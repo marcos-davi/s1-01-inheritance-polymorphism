@@ -1,10 +1,25 @@
 package level1.exercise1;
 
 public abstract class Instrument {
-    String name;
-    double price;
+    private String name;
+    private double price;
 
     public abstract void play();
+
+    public static void playing(String name) {
+        System.out.println("Playing a: " + name);
+    }
+    static {
+        System.out.println("Executing static block");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 
     public Instrument(String name, double price) {
         this.name = name;
