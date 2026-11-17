@@ -1,36 +1,20 @@
-# S1.01 - Inheritance and Polymorphism in Java
+### Level 1 - Exercise 2: `static` vs `final` Modifiers (`Car` Class)
 
-**Description**: Practical exercises focused on Object-Oriented Programming (OOP) principles in Java, including inheritance, abstract classes, polymorphism (`@Override`), class loading lifecycle, static/instance initialization blocks, and the `static` and `final` modifiers.
+This exercise demonstrates how Java manages class-level memory versus instance-level memory and immutability through the `static` and `final` modifiers.
 
-## Technologies
-* **Language**: Java (JDK 21+)
-* **Build Tool**: Apache Maven
-* **IDE**: IntelliJ IDEA
-* **Version Control**: Git & GitHub (Conventional Commits)
+#### Modifiers Comparison Table
+| Attribute | Modifiers | Memory Scope | Mutable? | Where is it initialized? |
+| :--- | :--- | :--- | :--- | :--- |
+| `BRAND` | `static final` | Class-level (single shared constant) | No (constant) | At declaration (`"Toyota"`) or inside a `static` block. |
+| `model` | `static` | Class-level (shared across all instances) | Yes | At declaration, in a `static` block, or via `Car.setModel(...)`. |
+| `power` | `final` | Instance-level (unique per object) | No (once assigned) | At declaration or inside the class constructor (`Car(int power)`). |
 
-## Technical Documentation & Theoretical Notes
-
-### Level 1 - Exercise 1: Class Loading & Initialization Blocks
-During execution, the Java Virtual Machine (JVM) loads each class into memory **only once**. This loading process is triggered the first time either of these two events occurs:
-1. The first instance of the class is created (`new WindInstrument(...)`).
-2. A `static` member (field or method) of the class is accessed (`Instrument.playing(...)`).
-
-#### Differences between `static` Block and Instance Initialization Block
-| Feature | Static Block (`static { ... }`) | Instance Initialization Block (`{ ... }`) |
-| :--- | :--- | :--- |
-| **When it executes** | **Once**, when the class is first loaded into memory by the JVM. | **Every time** a new object instance is created with `new`, right before the constructor body runs. |
-| **Access to members** | Can only access `static` fields and methods. | Can access both instance (`this`) and `static` members. |
-| **Primary use case** | Initializing static constants or running one-time class setup logic. | Sharing common initialization code across multiple overloaded constructors. |
-
-## Project Structure
-```text
-s1-01-inheritance-polymorphism/
-├── src/
-│   └── main/
-│       └── java/
-│           └── level1/
-│               ├── exercise1/    # Musical Instruments (Inheritance & Class Loading)
-│               └── exercise2/    # Car Class (static & final modifiers)
-├── .gitignore
-├── pom.xml
-└── README.md
+#### Key Takeaways & Answers
+* **Which attribute can be initialized in the constructor?**  
+  Only `power` (`final` without `static`). Because it belongs to each individual instance, every `Car` object can receive its own value at creation time via `new Car(150)` or `new Car(200)`, after which it becomes immutable.
+* **Which attribute can never be modified?**  
+  `BRAND` (`static final`). It acts as a global constant for the entire `Car` class and cannot be reassigned anywhere in the program.
+* **Which attribute affects all instances when modified?**  
+  `model` (`static`). Because there is only one copy in class memory, calling `Car.setModel("Camry")` immediately updates the model seen across all existing and future `Car` instances (`car1` and `car2`).
+* **`static` vs Instance Methods:**  
+  `Car.brake()` is `static` and can be invoked directly on the class without creating any object, whereas `accelerate()` is an instance method and requires an instantiated `Car` object (`car1.accelerate()`).
