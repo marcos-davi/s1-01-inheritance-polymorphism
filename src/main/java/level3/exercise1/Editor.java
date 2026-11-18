@@ -46,6 +46,9 @@ public class Editor {
     }
 
     public boolean removeNews(String headline) {
-        return this.newsList.removeIf(news -> news.getHeadline().equalsIgnoreCase(headline));
+        if (headline == null) {
+            return false;
+        }
+        return this.newsList.removeIf(news -> headline.equalsIgnoreCase(news.getHeadline()));
     }
 }
