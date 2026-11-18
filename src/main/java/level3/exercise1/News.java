@@ -6,9 +6,11 @@ public abstract class News {
     private int score;
     private double price;
 
-    public News(String headline) {
+    public News(String headline,int score, double price) {
         this.headline = headline;
         this.text = "";
+        this.score = score;
+        this.price = price;
     }
 
     public abstract  double calculatePrice();

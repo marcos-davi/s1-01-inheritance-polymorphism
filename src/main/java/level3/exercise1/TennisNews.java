@@ -4,11 +4,11 @@ public class TennisNews extends News{
     private String competition;
     private String player;
     public TennisNews(String headline,  String competition, String player) {
-        super(headline);
+        super(headline, 0, 0.0);
         this.competition = competition;
         this.player = player;
-        this.calculatePrice();
-        this.calculateScore();
+        setPrice(calculatePrice());
+        setScore(calculateScore());
     }
 
     public String getCompetition() {

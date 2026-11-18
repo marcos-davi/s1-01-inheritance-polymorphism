@@ -4,8 +4,14 @@ public class MotorcyclingNews extends News{
     private String team;
 
     public MotorcyclingNews(String headline, String team) {
-        super(headline);
+        super(headline, 0, 0.0);
         this.team = team;
+        setPrice(calculatePrice());
+        setScore(calculateScore());
+    }
+
+    public String getTeam() {
+        return team;
     }
 
     @Override

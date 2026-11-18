@@ -7,11 +7,11 @@ public class BasketballNews extends News {
 
 
     public BasketballNews(String headline, String competition, String club) {
-        super(headline);
+        super(headline, 0, 0.0);
         this.competition = competition;
         this.club = club;
-        this.calculatePrice();
-        this.calculateScore();
+        setPrice(calculatePrice());
+        setScore(calculateScore());
     }
 
     public String getCompetition() {
@@ -25,7 +25,7 @@ public class BasketballNews extends News {
     @Override
     public double calculatePrice() {
         double totalPrice = 250.0;
-        if("Euroleague".equalsIgnoreCase(competition)){
+        if("Euro league".equalsIgnoreCase(competition)){
             totalPrice += 75.0;
         }
         if("Barça".equalsIgnoreCase(club) || "Madrid".equalsIgnoreCase(club)){
@@ -38,7 +38,7 @@ public class BasketballNews extends News {
     @Override
     public int calculateScore() {
         int  totalScore = 4;
-        if("Euroleague".equalsIgnoreCase(competition)){
+        if("Euro league".equalsIgnoreCase(competition)){
             totalScore += 3;
         }else if("Liga ACB".equalsIgnoreCase(competition)){
             totalScore += 2;

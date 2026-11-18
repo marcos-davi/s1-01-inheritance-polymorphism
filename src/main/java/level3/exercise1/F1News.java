@@ -4,8 +4,10 @@ public class F1News extends News{
     private String team;
 
     public F1News(String headline, String team) {
-        super(headline);
+        super(headline,0, 0.0);
         this.team = team;
+        setPrice(calculatePrice());
+        setScore(calculateScore());
     }
 
     public String getTeam() {
