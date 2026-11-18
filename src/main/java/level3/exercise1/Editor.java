@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Editor {
     private String name;
-    private final String DNI;
+    private final String dni;
     private static double salary = 1500.0;
-    List<News> news;
+    private List<News> newsList;
 
     public Editor(String name, String dni) {
         this.name = name;
-        DNI = dni;
-        this.news = new ArrayList<>();
+        this.dni = dni;
+        this.newsList = new ArrayList<>();
     }
 
     public String getName() {
@@ -23,8 +23,8 @@ public class Editor {
         this.name = name;
     }
 
-    public String getDNI() {
-        return DNI;
+    public String getDni() {
+        return dni;
     }
 
     public static double getSalary() {
@@ -35,14 +35,17 @@ public class Editor {
         Editor.salary = salary;
     }
 
-    public List<News> getNews() {
-        return news;
+    public List<News> getNewsList() {
+        return newsList;
     }
 
     public void addNews(News news) {
-        this.news.add(news);
+        if (news != null) {
+            this.newsList.add(news);
+        }
     }
-    public boolean removeNews(News news) {
-        return this.news.remove(news);
+
+    public boolean removeNews(String headline) {
+        return this.newsList.removeIf(news -> news.getHeadline().equalsIgnoreCase(headline));
     }
 }
