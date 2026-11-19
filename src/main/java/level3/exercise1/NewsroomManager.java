@@ -14,12 +14,32 @@ public class NewsroomManager {
 
     public boolean addEditor(String name, String dni) {
         if(findEditorByDni(dni) != null){
-            System.out.println("That editor already exist");
             return false;
         } Editor newEditor = new Editor(name, dni);
+        this.editors.add(newEditor);
         return true;
-
     }
+
+    public boolean removeEditor(String dni) {
+        Editor editorToDelete = findEditorByDni(dni);
+        if(editorToDelete == null){
+            return false;
+        } else {
+            return this.editors.remove(editorToDelete);
+
+        }
+    }
+
+    /**
+     //Another code version with removeIf
+
+     public boolean removeEditor(String dni) {
+     if (dni == null) {
+     return false;
+     }
+     return this.editors.removeIf(editor -> dni.equalsIgnoreCase(editor.getDni()));
+     }
+     */
 
     private Editor findEditorByDni(String dni){
             for (Editor editor:editors){
