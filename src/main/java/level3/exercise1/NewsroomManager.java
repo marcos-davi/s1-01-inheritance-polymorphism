@@ -41,6 +41,18 @@ public class NewsroomManager {
      }
      */
 
+    public boolean assignNewsToEditor(String dni, News news) {
+        Editor editorNews = findEditorByDni(dni);
+        if(news == null || editorNews == null){
+
+            return false;
+        } else{
+             editorNews.addNews(news);
+            return true;
+        }
+
+    }
+
     private Editor findEditorByDni(String dni){
             for (Editor editor:editors){
                 if(editor.getDni().equalsIgnoreCase(dni)){
