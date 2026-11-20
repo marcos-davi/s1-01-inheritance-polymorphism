@@ -78,6 +78,30 @@ public class NewsroomManager {
         return null;
     }
 
+    public double calculateNewsPrice(String dni, String headline) {
+        Editor editor = findEditorByDni(dni);
+        if (editor == null) {
+            return -1.0;
+        }
+        News news = findNewsByHeadline(editor, headline);
+        if (news == null) {
+            return -1.0;
+        }
+        return news.calculatePrice();
+    }
+
+    public int calculateNewsScore(String dni, String headline) {
+        Editor editor = findEditorByDni(dni);
+        if (editor == null) {
+            return -1;
+        }
+        News news = findNewsByHeadline(editor, headline);
+        if (news == null) {
+            return -1;
+        }
+        return news.calculateScore();
+    }
+
     private News findNewsByHeadline(Editor editor, String headline) {
         if(editor == null || headline == null){
             return null;
