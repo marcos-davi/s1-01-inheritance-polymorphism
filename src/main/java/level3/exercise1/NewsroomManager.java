@@ -13,16 +13,17 @@ public class NewsroomManager {
 
 
     public boolean addEditor(String name, String dni) {
-        if(findEditorByDni(dni) != null){
+        if (findEditorByDni(dni) != null) {
             return false;
-        } Editor newEditor = new Editor(name, dni);
+        }
+        Editor newEditor = new Editor(name, dni);
         this.editors.add(newEditor);
         return true;
     }
 
     public boolean removeEditor(String dni) {
         Editor editorToDelete = findEditorByDni(dni);
-        if(editorToDelete == null){
+        if (editorToDelete == null) {
             return false;
         } else {
             return this.editors.remove(editorToDelete);
@@ -31,34 +32,61 @@ public class NewsroomManager {
     }
 
     /**
-     //Another code version with removeIf
-
-     public boolean removeEditor(String dni) {
-     if (dni == null) {
-     return false;
-     }
-     return this.editors.removeIf(editor -> dni.equalsIgnoreCase(editor.getDni()));
-     }
+     * //Another code version with removeIf
+     * <p>
+     * public boolean removeEditor(String dni) {
+     * if (dni == null) {
+     * return false;
+     * }
+     * return this.editors.removeIf(editor -> dni.equalsIgnoreCase(editor.getDni()));
+     * }
      */
 
     public boolean assignNewsToEditor(String dni, News news) {
         Editor editorNews = findEditorByDni(dni);
-        if(news == null || editorNews == null){
-
+        if (news == null || editorNews == null) {
             return false;
-        } else{
-             editorNews.addNews(news);
+        } else {
+            editorNews.addNews(news);
             return true;
         }
+    }
+
+    public boolean removeNewsFromEditor(String dni, String headline) {
+        Editor editorToRemoveNews = findEditorByDni(dni);
+        if (editorToRemoveNews == null) {
+            return false;
+        }
+        return editorToRemoveNews.removeNews(headline);
+    }
+
+    public List<News> getNewsByEditor(String dni) {
+        Editor editorListNews = findEditorByDni(dni);
+        if (editorListNews == null) {
+            return null;
+        }
+        return editorListNews.getNewsList();
 
     }
 
-    private Editor findEditorByDni(String dni){
-            for (Editor editor:editors){
-                if(editor.getDni().equalsIgnoreCase(dni)){
-                    return editor;
-                }
+    private Editor findEditorByDni(String dni) {
+        for (Editor editor : editors) {
+            if (editor.getDni().equalsIgnoreCase(dni)) {
+                return editor;
             }
+        }
+        return null;
+    }
+
+    private News findNewsByHeadline(Editor editor, String headline) {
+        if(editor == null || headline == null){
+            return null;
+        }
+        for (News news : editor.getNewsList()) {
+            if (news.getHeadline().equalsIgnoreCase(headline)) {
+                return news;
+            }
+        }
         return null;
     }
 
