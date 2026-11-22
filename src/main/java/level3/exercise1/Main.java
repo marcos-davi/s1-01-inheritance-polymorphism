@@ -157,7 +157,7 @@ public class Main {
                     System.out.println("Enter the Team: ");
                     String newsTeam = scanner.nextLine().trim();
                     if (newsTeam.isEmpty()) {
-                        System.out.println("Error: Club cannot be empty.");
+                        System.out.println("Error: Team cannot be empty.");
                         return;
                     }
                     news = new F1News(newsHeadline, newsTeam);
@@ -173,7 +173,7 @@ public class Main {
                     System.out.println("Enter the Team: ");
                     String newsTeam = scanner.nextLine().trim();
                     if (newsTeam.isEmpty()) {
-                        System.out.println("Error: Club cannot be empty.");
+                        System.out.println("Error: Team cannot be empty.");
                         return;
                     }
                     news = new MotorcyclingNews(newsHeadline, newsTeam);
