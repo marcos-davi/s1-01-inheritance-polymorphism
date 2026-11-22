@@ -6,7 +6,7 @@ import java.util.List;
 public class NewsroomManager {
     private List<Editor> editors;
 
-    public NewsroomManager(List<Editor> editors) {
+    public NewsroomManager() {
         this.editors = new ArrayList<>();
 
     }
