@@ -61,7 +61,7 @@ public class Main {
             System.out.println("3. Tennis");
             System.out.println("4. F1");
             System.out.println("5. Motorcycling");
-            int option = readInt(scanner, "Pick a esport: ");
+            int option = readInt(scanner, "Choose a sport: ");
             News news = null;
             switch (option) {
                 case 1 -> {
