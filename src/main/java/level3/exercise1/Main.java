@@ -3,6 +3,8 @@ package level3.exercise1;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.awt.Event.F1;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -47,6 +49,55 @@ public class Main {
     }
 
     private static void handleAssignNews(Scanner scanner, NewsroomManager manager) {
+        System.out.print("Enter the editor's DNI: ");
+        String editorDni = scanner.nextLine().trim();
+
+        if(editorDni.isEmpty()) {
+            System.out.println("Error: DNI cannot be empty.");
+            return;
+        }
+            System.out.println("1. Football");
+            System.out.println("2. Basketball");
+            System.out.println("3. Tennis");
+            System.out.println("4. F1");
+            System.out.println("5. Motorcycling");
+            int option = readInt(scanner, "Pick an option: ");
+            News news = null;
+            switch (option) {
+                case 1 -> {
+
+                    System.out.println("------------ FOOTBALL NEWS -----------");
+                    System.out.println("Enter the headline: ");
+                    String newsHeadline = scanner.nextLine().trim();
+                    if (newsHeadline.isEmpty()) {
+                        System.out.println("Enter the competition: ");
+                        return;
+                    }
+
+                    String newsCompetition = scanner.nextLine().trim();
+                    if (newsCompetition.isEmpty()) {
+                        System.out.println("Enter the club: ");
+                    return;
+                    }
+
+                    String newsClub = scanner.nextLine().trim();
+                    if (newsClub.isEmpty()) {
+                        System.out.println("Error: Club cannot be empty.");
+                        return;
+                    }
+                    System.out.println("Enter a player: ");
+                    String newsPlayer = scanner.nextLine().trim();
+                    if (newsPlayer.isEmpty()) {
+                        System.out.println("Error: Player cannot be empty.");
+                        return;
+                    }
+                    news = new FootballNews(newsHeadline, newsCompetition, newsClub, newsPlayer);
+
+                }
+            }
+
+
+
         
     }
 
