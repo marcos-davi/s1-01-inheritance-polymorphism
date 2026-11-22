@@ -95,10 +95,24 @@ public class Main {
                     news = new FootballNews(newsHeadline, newsCompetition, newsClub, newsPlayer);
 
                 }
-                case 2 -> {}
-                case 3 -> {}
-                case 4 -> {}
-                case 5 -> {}
+                case 2 -> {
+                    System.out.println("------------ BASKETBALL NEWS -----------");
+
+                    news = new BasketballNews(newsHeadline, newsCompetition, newsClub);
+
+                }
+                case 3 -> {
+                    System.out.println("------------ TENNIS NEWS -----------");
+                    news = new TennisNews(newsHeadline, newsCompetition, newsPlayer);
+                }
+                case 4 -> {
+                    System.out.println("------------ F1 NEWS -----------");
+                    news = new F1News(newsHeadline, newsTeam);
+                }
+                case 5 -> {
+                    System.out.println("------------ MOTORCYCLING NEWS -----------");
+                    news = new MotorcyclingNews(newsHeadline, newsTeam);
+                }
                 default -> {
                     System.out.println("Error: Invalid sport option.");
                     return;
