@@ -65,21 +65,22 @@ public class Main {
             News news = null;
             switch (option) {
                 case 1 -> {
-
                     System.out.println("------------ FOOTBALL NEWS -----------");
                     System.out.println("Enter the headline: ");
                     String newsHeadline = scanner.nextLine().trim();
                     if (newsHeadline.isEmpty()) {
-                        System.out.println("Enter the competition: ");
+                        System.out.println("Error: Headline cannot be empty.");
                         return;
                     }
 
+                    System.out.println("Enter the competition: ");
                     String newsCompetition = scanner.nextLine().trim();
                     if (newsCompetition.isEmpty()) {
-                        System.out.println("Enter the club: ");
+                        System.out.println("Error: Competition cannot be empty.");
                     return;
                     }
 
+                    System.out.println("Enter the club: ");
                     String newsClub = scanner.nextLine().trim();
                     if (newsClub.isEmpty()) {
                         System.out.println("Error: Club cannot be empty.");
@@ -94,11 +95,21 @@ public class Main {
                     news = new FootballNews(newsHeadline, newsCompetition, newsClub, newsPlayer);
 
                 }
+                case 2 -> {}
+                case 3 -> {}
+                case 4 -> {}
+                case 5 -> {}
+                default -> {
+                    System.out.println("Error: Invalid sport option.");
+                    return;
+                }
             }
 
-
-
-        
+        if(manager.assignNewsToEditor(editorDni, news)){
+            System.out.println("News assigned successfully!");
+        }else {
+            System.out.println("Error: Editor with DNI " + editorDni + " was not found.");
+        }
     }
 
     private static void handleRemoveEditor(Scanner scanner, NewsroomManager manager) {
