@@ -10,10 +10,6 @@ public class F1News extends News{
         setScore(calculateScore());
     }
 
-    public String getTeam() {
-        return team;
-    }
-
     @Override
     public double calculatePrice() {
         double totalPrice = 100.0;

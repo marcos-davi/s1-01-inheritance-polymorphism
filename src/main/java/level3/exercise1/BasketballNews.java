@@ -14,14 +14,6 @@ public class BasketballNews extends News {
         setScore(calculateScore());
     }
 
-    public String getCompetition() {
-        return competition;
-    }
-
-    public String getClub() {
-        return club;
-    }
-
     @Override
     public double calculatePrice() {
         double totalPrice = 250.0;

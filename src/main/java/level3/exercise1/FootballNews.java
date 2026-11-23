@@ -14,18 +14,6 @@ public class FootballNews extends News {
         setScore(calculateScore());
     }
 
-    public String getCompetition() {
-        return competition;
-    }
-
-    public String getClub() {
-        return club;
-    }
-
-    public String getPlayer() {
-        return player;
-    }
-
     @Override
     public double calculatePrice() {
         double totalPrice = 300.0;
