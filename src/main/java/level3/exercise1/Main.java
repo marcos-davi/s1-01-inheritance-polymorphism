@@ -20,7 +20,7 @@ public class Main {
                 case 1 -> handleAddEditor(scanner, manager);
                 case 2 -> handleRemoveEditor(scanner, manager);
                 case 3 -> handleAssignNews(scanner, manager);
-                case 4 -> handleRemoveNews(scanner, manager);               
+                case 4 -> handleRemoveNews(scanner, manager);
                 case 5 -> handleShowNewsByEditor(scanner, manager);
                 case 6 -> handleCalculateScore(scanner, manager);
                 case 7 -> handleCalculatePrice(scanner, manager);
@@ -33,160 +33,199 @@ public class Main {
     }
 
     private static void handleCalculatePrice(Scanner scanner, NewsroomManager manager) {
-        
+
     }
 
     private static void handleCalculateScore(Scanner scanner, NewsroomManager manager) {
-        
+
     }
 
     private static void handleShowNewsByEditor(Scanner scanner, NewsroomManager manager) {
-        
+        System.out.print("Enter the editor's DNI: ");
+        String editorDni = scanner.nextLine().trim();
+
+        if (editorDni.isEmpty()) {
+            System.out.println("Error: DNI cannot be empty.");
+            return;
+        }
+
+        List<News> editorNews = manager.getNewsByEditor(editorDni);
+
+        if (editorNews == null) {
+            System.out.println("Error: Editor not found.");
+        } else if (editorNews.isEmpty()) {
+            System.out.println("This editor has no assigned news yet.");
+        } else {
+            System.out.println("--- News by Editor (" + editorDni + ") ---");
+            for (News news : editorNews) {
+                System.out.println("Headline: " + news.getHeadline());
+                System.out.println("Price: " + news.getPrice() + "€");
+                System.out.println("Score: " + news.getScore() + " pts");
+                System.out.println("-----------------------------------");
+            }
+        }
     }
 
     private static void handleRemoveNews(Scanner scanner, NewsroomManager manager) {
-        
+        System.out.print("Enter the editor's DNI: ");
+        String editorDni = scanner.nextLine().trim();
+        if (editorDni.isEmpty()) {
+            System.out.println("Error: DNI cannot be empty.");
+            return;
+        }
+        System.out.println("Enter the headline: ");
+        String newsHeadline = scanner.nextLine().trim();
+        if (newsHeadline.isEmpty()) {
+            System.out.println("Error: Headline cannot be empty.");
+            return;
+        }
+        if (manager.removeNewsFromEditor(editorDni, newsHeadline)) {
+            System.out.println("News removed successfully.");
+        } else {
+            System.out.println("Error: Editor or news not found.");
+        }
+
     }
 
     private static void handleAssignNews(Scanner scanner, NewsroomManager manager) {
         System.out.print("Enter the editor's DNI: ");
         String editorDni = scanner.nextLine().trim();
 
-        if(editorDni.isEmpty()) {
+        if (editorDni.isEmpty()) {
             System.out.println("Error: DNI cannot be empty.");
             return;
         }
-            System.out.println("1. Football");
-            System.out.println("2. Basketball");
-            System.out.println("3. Tennis");
-            System.out.println("4. F1");
-            System.out.println("5. Motorcycling");
-            int option = readInt(scanner, "Choose a sport: ");
-            News news = null;
-            switch (option) {
-                case 1 -> {
-                    System.out.println("------------ FOOTBALL NEWS -----------");
-                    System.out.println("Enter the headline: ");
-                    String newsHeadline = scanner.nextLine().trim();
-                    if (newsHeadline.isEmpty()) {
-                        System.out.println("Error: Headline cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter the competition: ");
-                    String newsCompetition = scanner.nextLine().trim();
-                    if (newsCompetition.isEmpty()) {
-                        System.out.println("Error: Competition cannot be empty.");
-                    return;
-                    }
-
-                    System.out.println("Enter the club: ");
-                    String newsClub = scanner.nextLine().trim();
-                    if (newsClub.isEmpty()) {
-                        System.out.println("Error: Club cannot be empty.");
-                        return;
-                    }
-                    System.out.println("Enter a player: ");
-                    String newsPlayer = scanner.nextLine().trim();
-                    if (newsPlayer.isEmpty()) {
-                        System.out.println("Error: Player cannot be empty.");
-                        return;
-                    }
-                    news = new FootballNews(newsHeadline, newsCompetition, newsClub, newsPlayer);
-
-                }
-                case 2 -> {
-                    System.out.println("------------ BASKETBALL NEWS -----------");
-                    System.out.println("Enter the headline: ");
-                    String newsHeadline = scanner.nextLine().trim();
-                    if (newsHeadline.isEmpty()) {
-                        System.out.println("Error: Headline cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter the competition: ");
-                    String newsCompetition = scanner.nextLine().trim();
-                    if (newsCompetition.isEmpty()) {
-                        System.out.println("Error: Competition cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter the club: ");
-                    String newsClub = scanner.nextLine().trim();
-                    if (newsClub.isEmpty()) {
-                        System.out.println("Error: Club cannot be empty.");
-                        return;
-                    }
-
-                    news = new BasketballNews(newsHeadline, newsCompetition, newsClub);
-
-                }
-                case 3 -> {
-                    System.out.println("------------ TENNIS NEWS -----------");
-                    System.out.println("Enter the headline: ");
-                    String newsHeadline = scanner.nextLine().trim();
-                    if (newsHeadline.isEmpty()) {
-                        System.out.println("Error: Headline cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter the competition: ");
-                    String newsCompetition = scanner.nextLine().trim();
-                    if (newsCompetition.isEmpty()) {
-                        System.out.println("Error: Competition cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter a player: ");
-                    String newsPlayer = scanner.nextLine().trim();
-                    if (newsPlayer.isEmpty()) {
-                        System.out.println("Error: Player cannot be empty.");
-                        return;
-                    }
-                    news = new TennisNews(newsHeadline, newsCompetition, newsPlayer);
-                }
-                case 4 -> {
-                    System.out.println("------------ F1 NEWS -----------");
-                    System.out.println("Enter the headline: ");
-                    String newsHeadline = scanner.nextLine().trim();
-                    if (newsHeadline.isEmpty()) {
-                        System.out.println("Error: Headline cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter the Team: ");
-                    String newsTeam = scanner.nextLine().trim();
-                    if (newsTeam.isEmpty()) {
-                        System.out.println("Error: Team cannot be empty.");
-                        return;
-                    }
-                    news = new F1News(newsHeadline, newsTeam);
-                }
-                case 5 -> {
-                    System.out.println("------------ MOTORCYCLING NEWS -----------");
-                    String newsHeadline = scanner.nextLine().trim();
-                    if (newsHeadline.isEmpty()) {
-                        System.out.println("Error: Headline cannot be empty.");
-                        return;
-                    }
-
-                    System.out.println("Enter the Team: ");
-                    String newsTeam = scanner.nextLine().trim();
-                    if (newsTeam.isEmpty()) {
-                        System.out.println("Error: Team cannot be empty.");
-                        return;
-                    }
-                    news = new MotorcyclingNews(newsHeadline, newsTeam);
-                }
-                default -> {
-                    System.out.println("Error: Invalid sport option.");
+        System.out.println("1. Football");
+        System.out.println("2. Basketball");
+        System.out.println("3. Tennis");
+        System.out.println("4. F1");
+        System.out.println("5. Motorcycling");
+        int option = readInt(scanner, "Choose a sport: ");
+        News news = null;
+        switch (option) {
+            case 1 -> {
+                System.out.println("------------ FOOTBALL NEWS -----------");
+                System.out.println("Enter the headline: ");
+                String newsHeadline = scanner.nextLine().trim();
+                if (newsHeadline.isEmpty()) {
+                    System.out.println("Error: Headline cannot be empty.");
                     return;
                 }
+
+                System.out.println("Enter the competition: ");
+                String newsCompetition = scanner.nextLine().trim();
+                if (newsCompetition.isEmpty()) {
+                    System.out.println("Error: Competition cannot be empty.");
+                    return;
+                }
+
+                System.out.println("Enter the club: ");
+                String newsClub = scanner.nextLine().trim();
+                if (newsClub.isEmpty()) {
+                    System.out.println("Error: Club cannot be empty.");
+                    return;
+                }
+                System.out.println("Enter a player: ");
+                String newsPlayer = scanner.nextLine().trim();
+                if (newsPlayer.isEmpty()) {
+                    System.out.println("Error: Player cannot be empty.");
+                    return;
+                }
+                news = new FootballNews(newsHeadline, newsCompetition, newsClub, newsPlayer);
+
             }
+            case 2 -> {
+                System.out.println("------------ BASKETBALL NEWS -----------");
+                System.out.println("Enter the headline: ");
+                String newsHeadline = scanner.nextLine().trim();
+                if (newsHeadline.isEmpty()) {
+                    System.out.println("Error: Headline cannot be empty.");
+                    return;
+                }
 
-        if(manager.assignNewsToEditor(editorDni, news)){
+                System.out.println("Enter the competition: ");
+                String newsCompetition = scanner.nextLine().trim();
+                if (newsCompetition.isEmpty()) {
+                    System.out.println("Error: Competition cannot be empty.");
+                    return;
+                }
+
+                System.out.println("Enter the club: ");
+                String newsClub = scanner.nextLine().trim();
+                if (newsClub.isEmpty()) {
+                    System.out.println("Error: Club cannot be empty.");
+                    return;
+                }
+
+                news = new BasketballNews(newsHeadline, newsCompetition, newsClub);
+
+            }
+            case 3 -> {
+                System.out.println("------------ TENNIS NEWS -----------");
+                System.out.println("Enter the headline: ");
+                String newsHeadline = scanner.nextLine().trim();
+                if (newsHeadline.isEmpty()) {
+                    System.out.println("Error: Headline cannot be empty.");
+                    return;
+                }
+
+                System.out.println("Enter the competition: ");
+                String newsCompetition = scanner.nextLine().trim();
+                if (newsCompetition.isEmpty()) {
+                    System.out.println("Error: Competition cannot be empty.");
+                    return;
+                }
+
+                System.out.println("Enter a player: ");
+                String newsPlayer = scanner.nextLine().trim();
+                if (newsPlayer.isEmpty()) {
+                    System.out.println("Error: Player cannot be empty.");
+                    return;
+                }
+                news = new TennisNews(newsHeadline, newsCompetition, newsPlayer);
+            }
+            case 4 -> {
+                System.out.println("------------ F1 NEWS -----------");
+                System.out.println("Enter the headline: ");
+                String newsHeadline = scanner.nextLine().trim();
+                if (newsHeadline.isEmpty()) {
+                    System.out.println("Error: Headline cannot be empty.");
+                    return;
+                }
+
+                System.out.println("Enter the Team: ");
+                String newsTeam = scanner.nextLine().trim();
+                if (newsTeam.isEmpty()) {
+                    System.out.println("Error: Team cannot be empty.");
+                    return;
+                }
+                news = new F1News(newsHeadline, newsTeam);
+            }
+            case 5 -> {
+                System.out.println("------------ MOTORCYCLING NEWS -----------");
+                String newsHeadline = scanner.nextLine().trim();
+                if (newsHeadline.isEmpty()) {
+                    System.out.println("Error: Headline cannot be empty.");
+                    return;
+                }
+
+                System.out.println("Enter the Team: ");
+                String newsTeam = scanner.nextLine().trim();
+                if (newsTeam.isEmpty()) {
+                    System.out.println("Error: Team cannot be empty.");
+                    return;
+                }
+                news = new MotorcyclingNews(newsHeadline, newsTeam);
+            }
+            default -> {
+                System.out.println("Error: Invalid sport option.");
+                return;
+            }
+        }
+
+        if (manager.assignNewsToEditor(editorDni, news)) {
             System.out.println("News assigned successfully!");
-        }else {
+        } else {
             System.out.println("Error: Editor with DNI " + editorDni + " was not found.");
         }
     }
