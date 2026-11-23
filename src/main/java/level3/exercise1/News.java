@@ -24,14 +24,6 @@ public abstract class News {
         this.headline = headline;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public int getScore() {
         return score;
     }
