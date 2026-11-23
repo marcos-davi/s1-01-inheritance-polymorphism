@@ -19,21 +19,11 @@ public class Editor {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getDni() {
         return dni;
     }
 
-    public static double getSalary() {
-        return salary;
-    }
-
-    public static void setSalary(double salary) {
-        Editor.salary = salary;
-    }
 
     public List<News> getNewsList() {
         return newsList;
