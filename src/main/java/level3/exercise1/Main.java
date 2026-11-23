@@ -3,7 +3,6 @@ package level3.exercise1;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.awt.Event.F1;
 
 public class Main {
 
@@ -33,10 +32,48 @@ public class Main {
     }
 
     private static void handleCalculatePrice(Scanner scanner, NewsroomManager manager) {
+        System.out.print("Enter the editor's DNI: ");
+        String editorDni = scanner.nextLine().trim();
+        if (editorDni.isEmpty()) {
+            System.out.println("Error: DNI cannot be empty.");
+            return;
+        }
+        System.out.println("Enter the headline: ");
+        String newsHeadline = scanner.nextLine().trim();
+        if (newsHeadline.isEmpty()) {
+            System.out.println("Error: Headline cannot be empty.");
+            return;
+        }
+        double newsPrice = manager.calculateNewsPrice(editorDni, newsHeadline);
+        if(newsPrice < 0){
+            System.out.println("Error: Editor or news not found.");
+        } else {
+            System.out.println("Total price is: " + newsPrice + "€");
+        }
 
     }
 
     private static void handleCalculateScore(Scanner scanner, NewsroomManager manager) {
+        System.out.print("Enter the editor's DNI: ");
+        String editorDni = scanner.nextLine().trim();
+        if (editorDni.isEmpty()) {
+            System.out.println("Error: DNI cannot be empty.");
+            return;
+        }
+        System.out.println("Enter the headline: ");
+        String newsHeadline = scanner.nextLine().trim();
+        if (newsHeadline.isEmpty()) {
+            System.out.println("Error: Headline cannot be empty.");
+            return;
+        }
+        int newsScore = manager.calculateNewsScore(editorDni, newsHeadline);
+        if(newsScore < 0){
+            System.out.println("Error: Editor or news not found.");
+        } else {
+
+            System.out.println("Total score is: " + newsScore + "Pts");
+        }
+
 
     }
 
@@ -203,6 +240,7 @@ public class Main {
             }
             case 5 -> {
                 System.out.println("------------ MOTORCYCLING NEWS -----------");
+                System.out.println("Enter the headline: ");
                 String newsHeadline = scanner.nextLine().trim();
                 if (newsHeadline.isEmpty()) {
                     System.out.println("Error: Headline cannot be empty.");
@@ -253,7 +291,7 @@ public class Main {
         String editorDni = scanner.nextLine().trim();
 
         if (editorName.isEmpty() || editorDni.isEmpty()) {
-            System.out.println("Error: DNI cannot be empty.");
+            System.out.println("Error: Name and DNI cannot be empty.");
             return;
         }
 
