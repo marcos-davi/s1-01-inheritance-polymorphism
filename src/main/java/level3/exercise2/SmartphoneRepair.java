@@ -1,14 +1,15 @@
 package level3.exercise2;
 
 public class SmartphoneRepair extends RepairOrder{
-    private final String brand;
-    private final String component;
     private static final double BASE_COST = 80.0;
     private static final double PREMIUM_BRAND_BONUS = 50.0;
     private static final double CRITICAL_COMPONENT_BONUS = 70.0;
     private static final int BASE_WARRANTY_MONTHS = 6;
     private static final int PREMIUM_BRAND_WARRANTY_BONUS = 6;
     private static final int BATTERY_WARRANTY_BONUS = 3;
+
+    private final String brand;
+    private final String component;
     public SmartphoneRepair(String ticketCode, String brand, String component) {
         super(ticketCode);
         this.brand = brand;
