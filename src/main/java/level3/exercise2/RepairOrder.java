@@ -1,7 +1,7 @@
 package level3.exercise2;
 
 public abstract class RepairOrder {
-    private String ticketCode;
+    private final String ticketCode;
     private String issueDescription;
     private int warrantyMonths;
     private double totalCost;
@@ -18,10 +18,6 @@ public abstract class RepairOrder {
         return ticketCode;
     }
 
-    public void setTicketCode(String ticketCode) {
-        this.ticketCode = ticketCode;
-    }
-
     public String getIssueDescription() {
         return issueDescription;
     }
@@ -34,7 +30,7 @@ public abstract class RepairOrder {
         return warrantyMonths;
     }
 
-    public void setWarrantyMonths(int warrantyMonths) {
+    protected void setWarrantyMonths(int warrantyMonths) {
         this.warrantyMonths = warrantyMonths;
     }
 
@@ -42,7 +38,7 @@ public abstract class RepairOrder {
         return totalCost;
     }
 
-    public void setTotalCost(double totalCost) {
+    protected void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
     }
 }
