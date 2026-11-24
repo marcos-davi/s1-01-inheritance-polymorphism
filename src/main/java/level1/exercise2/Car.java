@@ -1,7 +1,7 @@
 package level1.exercise2;
 
 public class Car {
-    private static final String BRAND = "Toyota";
+    private static final String brand = "Toyota";
     private static String model;
     private final int power;
 
@@ -10,8 +10,8 @@ public class Car {
         this.power = power;
     }
 
-    public static String getBRAND() {
-        return BRAND;
+    public static String getBrand() {
+        return brand;
     }
 
     public static void setModel(String model) {

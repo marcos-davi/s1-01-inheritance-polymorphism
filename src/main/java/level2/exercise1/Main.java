@@ -1,19 +1,3 @@
-//package level2.exercise1;
-//
-//public class Main {
-//    public static void main(String[] args) {
-//        SmartPhone smartPhone1 = new SmartPhone("Apple", "iPhone 13");
-//        smartPhone1.call("123-456-7890");
-//        smartPhone1.takePhoto();
-//        smartPhone1.alarm();
-//
-//        Clock clock = new SmartPhone("Samsung", "Galaxy S21");
-//        clock.alarm();
-//        Camera camera = new SmartPhone("Google", "Pixel 6");
-//        camera.takePhoto();
-//    }
-//}
-
 package level2.exercise1;
 
 import java.util.ArrayList;
