@@ -23,7 +23,6 @@ public class Technician {
         this.name = name;
     }
 
-
     public String getEmployeeId() {
         return employeeId;
     }
@@ -51,6 +50,5 @@ public class Technician {
             return false;
         }
         return this.assignedOrders.removeIf(order -> ticketOrder.equalsIgnoreCase(order.getTicketCode()));
-
     }
 }

@@ -42,7 +42,7 @@ public class LaptopRepair extends RepairOrder {
     @Override
     public int calculateWarrantyMonths() {
         int totalWarranty = BASE_WARRANTY_MONTHS;
-        if("MacBook".equalsIgnoreCase(brand) || ("ThinkPad".equalsIgnoreCase(brand))) {
+        if("MacBook".equalsIgnoreCase(brand) || "ThinkPad".equalsIgnoreCase(brand)) {
             totalWarranty += PREMIUM_BRAND_WARRANTY_BONUS;
         }
         if ("Motherboard".equalsIgnoreCase(repairType)) {

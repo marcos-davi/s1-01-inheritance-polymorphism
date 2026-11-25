@@ -22,7 +22,6 @@ public class SmartphoneRepair extends RepairOrder{
         return brand;
     }
 
-
     public String getComponent() {
         return component;
     }
