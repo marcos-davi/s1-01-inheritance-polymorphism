@@ -6,6 +6,38 @@ import java.util.List;
 public class ServiceCenterManager {
     private final List<Technician> technicians = new ArrayList<>();
 
+
+   public boolean addTechnician (String name, String employeeId){
+       if(findTechnicianById(employeeId) != null) {
+           return false;
+       }
+       Technician newTechnician = new Technician(name, employeeId);
+       if(!technicians.contains(newTechnician)) {
+           this.technicians.add(newTechnician);
+       }
+       return true;
+   }
+
+    public boolean removeTechnician(String employeeId){
+        if(findTechnicianById(employeeId) == null){
+            return false;
+        }
+        technicians.removeIf(technician -> technician.getEmployeeId().equalsIgnoreCase(employeeId));
+        return true;
+    }
+
+    public boolean assignOrderToTechnician(String employeeId, RepairOrder order){
+       Technician technician = findTechnicianById(employeeId);
+       if(technician.getAssignedOrders().contains(order)){
+           return false;
+       }
+       technician.addRepairOrder(order);
+       return true;
+
+    }
+
+
+
     private Technician findTechnicianById(String employeeId) {
         if(employeeId == null){
             return null;
