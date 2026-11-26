@@ -8,13 +8,14 @@ public class ServiceCenterManager {
 
 
     public boolean addTechnician(String name, String employeeId) {
+        if (name == null || name.trim().isEmpty() || employeeId == null || employeeId.trim().isEmpty()) {
+            return false;
+        }
         if (findTechnicianById(employeeId) != null) {
             return false;
         }
         Technician newTechnician = new Technician(name, employeeId);
-        if (!technicians.contains(newTechnician)) {
-            this.technicians.add(newTechnician);
-        }
+        this.technicians.add(newTechnician);
         return true;
     }
 
@@ -22,13 +23,15 @@ public class ServiceCenterManager {
         if (findTechnicianById(employeeId) == null) {
             return false;
         }
-        technicians.removeIf(technician -> technician.getEmployeeId().equalsIgnoreCase(employeeId));
-        return true;
+        return technicians.removeIf(technician -> technician.getEmployeeId().equalsIgnoreCase(employeeId));
     }
 
     public boolean assignOrderToTechnician(String employeeId, RepairOrder order) {
+        if (order == null || order.getTicketCode() == null || ticketCodeExists(order.getTicketCode())) {
+            return false;
+        }
         Technician technician = findTechnicianById(employeeId);
-        if (technician.getAssignedOrders().contains(order)) {
+        if(technician == null){
             return false;
         }
         technician.addRepairOrder(order);
@@ -41,11 +44,36 @@ public class ServiceCenterManager {
             return false;
         }
         Technician technician = findTechnicianById(employeeId);
+        if (technician == null) {
+            return false;
+        }
+        return technician.removeRepairOrder(ticketCode);
+    }
+
+    public List<RepairOrder> getOrdersByTechnician(String employeeId) {
+        Technician technician = findTechnicianById(employeeId);
+        if (technician == null) {
+            return null;
+        }
+        return technician.getAssignedOrders();
+    }
+
+    public double calculateOrderCost(String employeeId, String ticketCode){
+        Technician technician = findTechnicianById(employeeId);
         RepairOrder order = findOrderByCode(technician, ticketCode);
+        if(order == null){
+            return -1.0;
+        }
+        return order.calculateTotalCost();
+    }
 
-        technician.removeRepairOrder(ticketCode);
-
-        return true;
+    public int calculateOrderWarranty(String employeeId, String ticketCode){
+        Technician technician = findTechnicianById(employeeId);
+        RepairOrder order = findOrderByCode(technician, ticketCode);
+        if(order == null){
+            return -1;
+        }
+        return order.calculateWarrantyMonths();
     }
 
 
