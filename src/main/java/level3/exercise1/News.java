@@ -2,7 +2,7 @@ package level3.exercise1;
 
 public abstract class News {
     private String headline;
-    private String text;
+    private final String text;
     private int score;
     private double price;
 

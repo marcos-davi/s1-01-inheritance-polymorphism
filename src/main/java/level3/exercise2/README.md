@@ -62,13 +62,13 @@ Todas las subclases deben cumplir cuatro requisitos de diseño:
 3. Invocar `setTotalCost(calculateTotalCost())` y `setWarrantyMonths(calculateWarrantyMonths())` **al final de su constructor**.
 4. Realizar todas las comparaciones de texto ignorando mayúsculas/minúsculas con el literal delante (p. ej., `"Apple".equalsIgnoreCase(brand)`).
 
-| Subclase | Atributos (`private final String`) | Coste Base | Modificadores de Coste | Garantía Base | Modificadores de Garantía |
-|---|---|---|---|---|---|
-| `SmartphoneRepair` | `brand`<br>`component` | 80.0 € | +50.0 € si `brand` es Apple o Samsung<br>+70.0 € si `component` es Screen o Motherboard | 6 meses | +6 meses si `brand` es Apple o Samsung<br>+3 meses si `component` es Battery |
-| `LaptopRepair` | `brand`<br>`repairType` | 120.0 € | +80.0 € si `brand` es MacBook o ThinkPad<br>+90.0 € si `repairType` es Motherboard o GPU | 6 meses | +6 meses si `brand` es MacBook o ThinkPad<br>+6 meses si `repairType` es Motherboard |
-| `ConsoleRepair` | `consoleModel`<br>`fault` | 90.0 € | +45.0 € si `consoleModel` es PS5 o Xbox Series X<br>+40.0 € si `fault` es HDMI | 3 meses | +3 meses si `consoleModel` es PS5 o Nintendo Switch<br>+3 meses si <code>fault</code> es HDMI |
-| `SmartwatchRepair` | `brand` | 60.0 € | +35.0 € si `brand` es Apple Watch o Garmin | 3 meses | +3 meses si `brand` es Apple Watch o Garmin |
-| `TabletRepair` | `brand`<br>`component` | 85.0 € | +45.0 € si `brand` es iPad o Galaxy Tab<br>+60.0 € si `component` es Screen | 6 meses | +6 meses si `brand` es iPad o Galaxy Tab |
+| Subclase           | Atributos (`private final String`) | Coste Base | Modificadores de Coste                                                                   | Garantía Base | Modificadores de Garantía                                                                     |
+|--------------------|------------------------------------|------------|------------------------------------------------------------------------------------------|---------------|-----------------------------------------------------------------------------------------------|
+| `SmartphoneRepair` | `brand`<br>`component`             | 80.0 €     | +50.0 € si `brand` es Apple o Samsung<br>+70.0 € si `component` es Screen o Motherboard  | 6 meses       | +6 meses si `brand` es Apple o Samsung<br>+3 meses si `component` es Battery                  |
+| `LaptopRepair`     | `brand`<br>`repairType`            | 120.0 €    | +80.0 € si `brand` es MacBook o ThinkPad<br>+90.0 € si `repairType` es Motherboard o GPU | 6 meses       | +6 meses si `brand` es MacBook o ThinkPad<br>+6 meses si `repairType` es Motherboard          |
+| `ConsoleRepair`    | `consoleModel`<br>`fault`          | 90.0 €     | +45.0 € si `consoleModel` es PS5 o Xbox Series X<br>+40.0 € si `fault` es HDMI           | 3 meses       | +3 meses si `consoleModel` es PS5 o Nintendo Switch<br>+3 meses si <code>fault</code> es HDMI |
+| `SmartwatchRepair` | `brand`                            | 60.0 €     | +35.0 € si `brand` es Apple Watch o Garmin                                               | 3 meses       | +3 meses si `brand` es Apple Watch o Garmin                                                   |
+| `TabletRepair`     | `brand`<br>`component`             | 85.0 €     | +45.0 € si `brand` es iPad o Galaxy Tab<br>+60.0 € si `component` es Screen              | 6 meses       | +6 meses si `brand` es iPad o Galaxy Tab                                                      |
 
 ---
 

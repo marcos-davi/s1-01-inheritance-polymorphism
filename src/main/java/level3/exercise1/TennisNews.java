@@ -1,8 +1,8 @@
 package level3.exercise1;
 
 public class TennisNews extends News {
-    private String competition;
-    private String player;
+    private final String competition;
+    private final String player;
 
     public TennisNews(String headline, String competition, String player) {
         super(headline, 0, 0.0);

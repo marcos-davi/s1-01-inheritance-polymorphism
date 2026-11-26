@@ -1,8 +1,8 @@
 package level1.exercise1;
 
 public abstract class Instrument {
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
 
     { System.out.println("Initializing an Instrument instance"); }
 

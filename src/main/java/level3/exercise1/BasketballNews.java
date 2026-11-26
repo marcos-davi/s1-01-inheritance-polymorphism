@@ -1,8 +1,8 @@
 package level3.exercise1;
 
 public class BasketballNews extends News {
-    private String competition;
-    private String club;
+    private final String competition;
+    private final String club;
 
 
 

@@ -1,9 +1,9 @@
 package level3.exercise1;
 
 public class FootballNews extends News {
-    private String competition;
-    private String club;
-    private String player;
+    private final String competition;
+    private final String club;
+    private final String player;
 
     public FootballNews(String headline, String competition, String club, String player) {
         super(headline, 0, 0.0);

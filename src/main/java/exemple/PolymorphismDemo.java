@@ -15,7 +15,7 @@ interface Publishable {
 
 // 2. CLASE ABSTRACTA: Define identidad ("ES-UN"), estado común y constructor
 abstract class BaseArticle implements Publishable {
-    private String headline;
+    private final String headline;
 
     public BaseArticle(String headline) {
         this.headline = headline;
@@ -31,7 +31,7 @@ abstract class BaseArticle implements Publishable {
 
 // 3. SUBCLASES CONCRETAS
 class FootballArticle extends BaseArticle {
-    private String competition;
+    private final String competition;
 
     public FootballArticle(String headline, String competition) {
         super(headline);
@@ -54,7 +54,7 @@ class FootballArticle extends BaseArticle {
 }
 
 class F1Article extends BaseArticle {
-    private String team;
+    private final String team;
 
     public F1Article(String headline, String team) {
         super(headline);
@@ -74,7 +74,7 @@ class F1Article extends BaseArticle {
 
 // 4. DEMOSTRACIÓN DE POLIMORFISMO EN TIEMPO DE EJECUCIÓN
 public class PolymorphismDemo {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // Lista tipada con la clase abstracta BaseArticle
         List<BaseArticle> articles = new ArrayList<>();
         articles.add(new FootballArticle("Final Preview", "Champions League"));

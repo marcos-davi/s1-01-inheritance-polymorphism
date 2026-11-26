@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Editor {
-    private String name;
+    private final String name;
     private final String dni;
-    private static double salary = 1500.0;
-    private List<News> newsList;
+    private static final double salary = 1500.0;
+    private final List<News> newsList;
 
     public Editor(String name, String dni) {
         this.name = name;

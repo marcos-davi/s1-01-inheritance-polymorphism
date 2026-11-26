@@ -1,14 +1,8 @@
 package level1.exercise2;
 
-public class Car {
+public record Car(int power) {
     private static final String brand = "Toyota";
     private static String model;
-    private final int power;
-
-
-    public Car(int power) {
-        this.power = power;
-    }
 
     public static String getBrand() {
         return brand;
@@ -22,15 +16,11 @@ public class Car {
         return model;
     }
 
-    public int getPower() {
-        return power;
-    }
-
-    public  void accelerate(){
+    public void accelerate() {
         System.out.println("The vehicle is accelerating");
     }
 
-    public static void brake(){
+    public static void brake() {
         System.out.println("The vehicle is braking");
     }
 

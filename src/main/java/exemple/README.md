@@ -13,7 +13,7 @@ According to Oracle's official guidelines (*Controlling Access to Members of a C
 
 ```java
 public class Phone {
-    private String brand; // Protected internal state
+    private final String brand; // Protected internal state
 
     public Phone(String brand) {
         this.brand = brand;

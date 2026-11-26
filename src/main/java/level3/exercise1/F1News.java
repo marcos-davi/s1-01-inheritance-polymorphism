@@ -1,7 +1,7 @@
 package level3.exercise1;
 
 public class F1News extends News{
-    private String team;
+    private final String team;
 
     public F1News(String headline, String team) {
         super(headline,0, 0.0);

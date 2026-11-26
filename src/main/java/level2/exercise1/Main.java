@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // 1. Referencia concreta: acceso total a métodos de Phone, Camera y Clock
         SmartPhone smartPhone1 = new SmartPhone("Apple", "iPhone 13");
         smartPhone1.call("123-456-7890");

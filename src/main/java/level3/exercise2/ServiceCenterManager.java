@@ -7,39 +7,50 @@ public class ServiceCenterManager {
     private final List<Technician> technicians = new ArrayList<>();
 
 
-   public boolean addTechnician (String name, String employeeId){
-       if(findTechnicianById(employeeId) != null) {
-           return false;
-       }
-       Technician newTechnician = new Technician(name, employeeId);
-       if(!technicians.contains(newTechnician)) {
-           this.technicians.add(newTechnician);
-       }
-       return true;
-   }
+    public boolean addTechnician(String name, String employeeId) {
+        if (findTechnicianById(employeeId) != null) {
+            return false;
+        }
+        Technician newTechnician = new Technician(name, employeeId);
+        if (!technicians.contains(newTechnician)) {
+            this.technicians.add(newTechnician);
+        }
+        return true;
+    }
 
-    public boolean removeTechnician(String employeeId){
-        if(findTechnicianById(employeeId) == null){
+    public boolean removeTechnician(String employeeId) {
+        if (findTechnicianById(employeeId) == null) {
             return false;
         }
         technicians.removeIf(technician -> technician.getEmployeeId().equalsIgnoreCase(employeeId));
         return true;
     }
 
-    public boolean assignOrderToTechnician(String employeeId, RepairOrder order){
-       Technician technician = findTechnicianById(employeeId);
-       if(technician.getAssignedOrders().contains(order)){
-           return false;
-       }
-       technician.addRepairOrder(order);
-       return true;
+    public boolean assignOrderToTechnician(String employeeId, RepairOrder order) {
+        Technician technician = findTechnicianById(employeeId);
+        if (technician.getAssignedOrders().contains(order)) {
+            return false;
+        }
+        technician.addRepairOrder(order);
+        return true;
 
     }
 
+    public boolean removeOrderFromTechnician(String employeeId, String ticketCode) {
+        if (employeeId == null || ticketCode == null) {
+            return false;
+        }
+        Technician technician = findTechnicianById(employeeId);
+        RepairOrder order = findOrderByCode(technician, ticketCode);
+
+        technician.removeRepairOrder(ticketCode);
+
+        return true;
+    }
 
 
     private Technician findTechnicianById(String employeeId) {
-        if(employeeId == null){
+        if (employeeId == null) {
             return null;
         }
         for (Technician technician : technicians) {
@@ -50,24 +61,25 @@ public class ServiceCenterManager {
         return null;
     }
 
-    private RepairOrder findOrderByCode(Technician technician, String ticketCode){
-        if(technician== null || ticketCode == null){
+    private RepairOrder findOrderByCode(Technician technician, String ticketCode) {
+        if (technician == null || ticketCode == null) {
             return null;
         }
-        for(RepairOrder order : technician.getAssignedOrders()){
-            if(ticketCode.equalsIgnoreCase(order.getTicketCode())) {
+        for (RepairOrder order : technician.getAssignedOrders()) {
+            if (ticketCode.equalsIgnoreCase(order.getTicketCode())) {
                 return order;
             }
         }
         return null;
 
     }
-    private boolean ticketCodeExists(String ticketCode){
-        if(ticketCode == null){
+
+    private boolean ticketCodeExists(String ticketCode) {
+        if (ticketCode == null) {
             return false;
         }
         for (Technician technician : technicians) {
-            if(findOrderByCode(technician, ticketCode) != null){
+            if (findOrderByCode(technician, ticketCode) != null) {
                 return true;
             }
         }

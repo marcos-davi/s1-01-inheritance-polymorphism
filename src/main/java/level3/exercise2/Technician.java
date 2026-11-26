@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Technician {
     private String name;
-    private String employeeId;
+    private final String employeeId;
     private static double baseSalary = 1650.0;
-    private List<RepairOrder> assignedOrders;
+    private final List<RepairOrder> assignedOrders;
 
     public Technician(String name, String employeeId) {
         this.name = name;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsroomManager {
-    private List<Editor> editors;
+    private final List<Editor> editors;
 
     public NewsroomManager() {
         this.editors = new ArrayList<>();
