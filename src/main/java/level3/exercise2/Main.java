@@ -8,23 +8,22 @@ public class Main {
         ServiceCenterManager manager = new ServiceCenterManager();
         int option;
 
-        do{
+        do {
             printMenu();
-            option = readInt(scanner, "Choose a option:");
-            switch (option){
+            option = readInt(scanner, "Choose an option: ");
+            switch (option) {
                 case 1 -> handleRegisterTechnician(scanner, manager);
-                case 2 ->handleRemoveTechnician(scanner, manager);
-                case 3 ->handleAssignRepairOrderTechnician(scanner, manager);
-                case 4 ->handleRemoveRepairOrder(scanner, manager);
-                case 5->handleShowAllRepairOrdersByTechnician(scanner, manager);
-                case 6 ->handleCalculateRepairWarranty(scanner, manager);
-                case 7 ->handleCalculateRepairTotalCost(scanner, manager);
+                case 2 -> handleRemoveTechnician(scanner, manager);
+                case 3 -> handleAssignRepairOrderTechnician(scanner, manager);
+                case 4 -> handleRemoveRepairOrder(scanner, manager);
+                case 5 -> handleShowAllRepairOrdersByTechnician(scanner, manager);
+                case 6 -> handleCalculateRepairWarranty(scanner, manager);
+                case 7 -> handleCalculateRepairTotalCost(scanner, manager);
                 case 0 -> System.out.println("Exiting the program...");
                 default -> System.out.println("Invalid option. Please choose between 0 and 7.");
-
             }
 
-        }while (option == 0);
+        } while (option != 0);
         scanner.close();
 
     }
@@ -50,11 +49,38 @@ public class Main {
     }
 
     private static void handleRemoveTechnician(Scanner scanner, ServiceCenterManager manager) {
-        System.out.println("Main.handleRemoveTechnician");
+        System.out.println("Enter the employee's id: ");
+        String employeeId = scanner.nextLine().trim();
+
+        if (employeeId.isEmpty()) {
+            System.out.println("Error: Employee Id cannot be empty.");
+            return;
+        }
+
+        if (manager.removeTechnician(employeeId)) {
+            System.out.println("Technician removed successfully.");
+        } else {
+            System.out.println("Error: There is not a technician with that Id.");
+
+        }
     }
 
     private static void handleRegisterTechnician(Scanner scanner, ServiceCenterManager manager) {
-        System.out.println("handleRegisterTechnician");
+        System.out.println("Enter the technician's name: ");
+        String name = scanner.nextLine().trim();
+
+        System.out.println("Enter the employee's id: ");
+        String employeeId = scanner.nextLine().trim();
+
+        if (name.isEmpty() || employeeId.isEmpty()) {
+            System.out.println("Error: Name and employee Id cannot be empty.");
+            return;
+        }
+        if (manager.addTechnician(name, employeeId)) {
+            System.out.println("Technician added successfully.");
+        } else {
+            System.out.println("Error: A technician with that Id already exists.");
+        }
     }
 
     private static void printMenu() {
@@ -67,7 +93,6 @@ public class Main {
         System.out.println("6. Calculate repair warranty (months)");
         System.out.println("7. Calculate repair total cost (€)");
         System.out.println("0. Exit");
-
     }
 
     private static int readInt(Scanner scanner, String prompt) {
@@ -76,8 +101,7 @@ public class Main {
             String input = scanner.nextLine().trim();
             try {
                 return Integer.parseInt(input);
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter an integer number.");
             }
         }
