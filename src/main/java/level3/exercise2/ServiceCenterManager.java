@@ -42,10 +42,11 @@ public class ServiceCenterManager {
 
     public boolean removeOrderFromTechnician(String employeeId, String ticketCode) {
         Technician technician = findTechnicianById(employeeId);
-        if (technician == null || isBlank(ticketCode)) {
+        RepairOrder order = findOrderByCode(technician, ticketCode);
+        if (order == null) {
             return false;
         }
-        return technician.removeRepairOrder(ticketCode.trim());
+        return technician.getAssignedOrders().remove(order);
     }
 
     public List<RepairOrder> getOrdersByTechnician(String employeeId) {
@@ -110,5 +111,9 @@ public class ServiceCenterManager {
 
     private boolean isBlank(String value) {
         return value == null || value.trim().isEmpty();
+    }
+
+    public boolean hasTechnician(String employeeId) {
+        return findTechnicianById(employeeId) != null;
     }
 }
