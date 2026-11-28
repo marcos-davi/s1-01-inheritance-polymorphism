@@ -45,7 +45,87 @@ public class Main {
     }
 
     private static void handleAssignRepairOrderTechnician(Scanner scanner, ServiceCenterManager manager) {
-        System.out.println("Main.handleAssignRepairOrderTechnician");
+        System.out.println("Enter the employee's id: ");
+        String employeeId = scanner.nextLine().trim();
+
+        if (employeeId.isEmpty()) {
+            System.out.println("Error: Employee Id cannot be empty.");
+            return;
+        }
+        if (!manager.hasTechnician(employeeId)) {
+            System.out.println("Error: There is no Employee with this id.");
+            return;
+        }
+
+        System.out.println("1. Smartphone Repair");
+        System.out.println("2. Laptop Repair");
+        System.out.println("3. Console Repair");
+        System.out.println("4. Smartwatch Repair");
+        System.out.println("5. Tablet Repair");
+        int option = readInt(scanner, "Choose a repair type: ");
+        RepairOrder order = null;
+        String ticketCode = readTicketCode(scanner);
+        if (ticketCode == null) return;
+
+        switch (option) {
+            case 1 -> {
+                String brand = readRequiredInput(scanner, "Enter the Brand: ", "Brand");
+                if (brand == null) return;
+                String component = readRequiredInput(scanner, "Enter the component: ", "Component");
+                if (component == null) return;
+                order = new SmartphoneRepair(ticketCode, brand, component);
+            }
+            case 2 -> {
+                String brand = readRequiredInput(scanner, "Enter the Brand: ", "Brand");
+                if (brand == null) return;
+                String repairType = readRequiredInput(scanner, "Enter the repair type: ", "Repair type");
+                if (repairType == null) return;
+                order = new LaptopRepair(ticketCode, brand, repairType);
+            }
+            case 3 -> {
+                String consoleModel = readRequiredInput(scanner, "Enter the Console Model: ", "Console Model");
+                if (consoleModel == null) return;
+                String fault = readRequiredInput(scanner, "Enter the fault: ", "Fault");
+                if (fault == null) return;
+                order = new ConsoleRepair(ticketCode, consoleModel, fault);
+            }
+            case 4 -> {
+                String brand = readRequiredInput(scanner, "Enter the Brand: ", "Brand");
+                if (brand == null) return;
+                order = new SmartwatchRepair(ticketCode, brand);
+            }
+            case 5 -> {
+                String brand = readRequiredInput(scanner, "Enter the Brand: ", "Brand");
+                if (brand == null) return;
+                String component = readRequiredInput(scanner, "Enter the component: ", "Component");
+                if (component == null) return;
+                order = new TabletRepair(ticketCode, brand, component);
+            }
+            default -> {
+                System.out.println("Error: Invalid repair type.");
+                return;
+            }
+        }
+
+        if (manager.assignOrderToTechnician(employeeId, order)) {
+            System.out.println("Repair order assigned successfully.");
+        } else {
+            System.out.println("Error: Ticket code already exists.");
+        }
+    }
+
+    private static String readTicketCode(Scanner scanner) {
+        return readRequiredInput(scanner, "Enter the ticket code: ", "Ticket code");
+    }
+
+    private static String readRequiredInput(Scanner scanner, String prompt, String fieldName) {
+        System.out.println(prompt);
+        String value = scanner.nextLine().trim();
+        if (value.isEmpty()) {
+            System.out.println("Error: " + fieldName + " cannot be empty.");
+            return null;
+        }
+        return value;
     }
 
     private static void handleRemoveTechnician(Scanner scanner, ServiceCenterManager manager) {
